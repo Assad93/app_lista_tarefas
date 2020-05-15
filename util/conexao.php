@@ -5,10 +5,10 @@
         private $username = 'root';
         private $password = '';
 
-        public function Conectar() {
+        public function conectar() {
             try {
                 $conexao = new PDO(
-                    "mysql:host=$this->localhost;dbname=$this->dbname", 
+                    "mysql:host=$this->host;dbname=$this->dbname", 
                     "$this->username",
                     "$this->password"
                 );
