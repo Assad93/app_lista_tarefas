@@ -17,7 +17,15 @@
         }
 
         public function read() {
-
+            $sql = 'SELECT
+                         t.id, s.status, t.tarefa
+                    FROM 
+                         tb_tarefas AS t
+                         LEFT JOIN tb_status AS s ON (t.id_status = s.id)
+            ';
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
         public function update() {
