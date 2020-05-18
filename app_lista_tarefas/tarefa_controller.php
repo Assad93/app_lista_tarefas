@@ -20,4 +20,12 @@
         $conexao = new Conexao();
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefas = $tarefaService->read();
+    } else if($acao == 'atualizar') {
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_POST['id'])->__set('tarefa', $_POST['tarefa']);
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        if($tarefaService->update()) {
+            header('location: todas_tarefas.php');
+        }
     }

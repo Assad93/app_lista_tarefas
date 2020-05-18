@@ -16,22 +16,30 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 		<script>
-			function editar(id) {
+			function editar(id, txt_tarefa) {
 				let form = document.createElement('form');
-					form.action = "#";
+					form.action = "tarefa_controller.php?acao=atualizar";
 					form.method = 'post';
-				
+					form.className = 'row';
+
 				let inputTarefa = document.createElement('input');
 					inputTarefa.type = 'text';
 					inputTarefa.name = 'tarefa';
-					inputTarefa.className = 'form-control';
+					inputTarefa.className = 'col-9 form-control';
+					inputTarefa.value = txt_tarefa;
+				
+				let inputId = document.createElement('input');
+					inputId.type = 'hidden';
+					inputId.name = 'id';
+					inputId.value = id;
 				
 				let button = document.createElement('button');
 					button.type = 'submit';
-					button.className = 'btn btn-info';
+					button.className = 'col-3 btn btn-info';
 					button.innerHTML = 'Atualizar';
 				
 				form.appendChild(inputTarefa);
+				form.appendChild(inputId);
 				form.appendChild(button);
 
 				let tarefa = document.getElementById('tarefa_' + id);
@@ -81,7 +89,7 @@
 										</div>
 										<div class="col-sm-3 mt-2 d-flex justify-content-between">
 											<i class="fas fa-trash-alt fa-lg text-danger"></i>
-											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>)"></i>
+											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>, '<?= $tarefa->tarefa ?>')"></i>
 											<i class="fas fa-check-square fa-lg text-success"></i>
 										</div>
 									</div>
